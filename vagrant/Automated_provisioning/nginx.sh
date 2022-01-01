@@ -1,7 +1,9 @@
 # adding repository and installing nginx		
-apt update
-apt install nginx -y
-cat <<EOT > vproapp
+sudo apt update
+sudo apt install nginx -y
+sudo ln -sf /opt/VBoxGuestAdditions-*/lib/VBoxGuestAdditions/mount.vboxsf /sbin/mount.vboxsf
+
+cat <<EOT>> vproapp
 upstream vproapp {
 
  server app01:8080;

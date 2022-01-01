@@ -1,6 +1,8 @@
 TOMURL="https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.37/bin/apache-tomcat-8.5.37.tar.gz"
+sudo yum update -y
 yum install java-1.8.0-openjdk -y
 yum install git maven wget -y
+
 cd /tmp/
 wget $TOMURL -O tomcatbin.tar.gz
 EXTOUT=`tar xzvf tomcatbin.tar.gz`
@@ -50,10 +52,8 @@ git clone -b local-setup https://github.com/devopshydclub/vprofile-project.git
 cd vprofile-project
 mvn install
 systemctl stop tomcat
-sleep 60
 rm -rf /usr/local/tomcat8/webapps/ROOT*
 cp target/vprofile-v2.war /usr/local/tomcat8/webapps/ROOT.war
 systemctl start tomcat
-sleep 120
 cp /vagrant/application.properties /usr/local/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties
 systemctl restart tomcat
